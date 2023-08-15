@@ -6,8 +6,8 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-//    freopen("cbarn.in", "r", stdin);
-//    freopen("cbarn.out", "w", stdout);
+    freopen("cbarn.in", "r", stdin);
+    freopen("cbarn.out", "w", stdout);
 
     int numDoor;
     cin >> numDoor;
@@ -19,13 +19,10 @@ int main() {
     }
 
     int minDistance = INT_MAX;
-    for (int i = 0; i < numDoor; ++i) {
-        int idx = i + 1;
+    for (int startPos = 0; startPos < numDoor; ++startPos) {
         int distance = 0;
-        for (int j = 1; j < numDoor; ++j) {
-            distance += cowsNeeded[idx] * j;
-            ++idx;
-            idx %= numDoor;
+        for (int step = 1; step < numDoor; ++step) {
+            distance += cowsNeeded[(startPos + step) % numDoor] * step;
         }
         minDistance = min(minDistance, distance);
     }

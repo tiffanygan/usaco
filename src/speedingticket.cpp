@@ -2,44 +2,50 @@
 
 using namespace std;
 
+struct Speed {
+    int pos;
+    int speed;
+
+    Speed(int pos, int speed) : pos(pos), speed(speed) {}
+};
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-//    freopen("speeding.in", "r", stdin);
-//    freopen("speeding.out", "w", stdout);
+    freopen("speeding.in", "r", stdin);
+    freopen("speeding.out", "w", stdout);
 
     int numLimits, numBessie;
     cin >> numLimits >> numBessie;
-    vector<pair<int, int>> limit;
-    vector<pair<int, int>> bessie;
     set<int> landmarks;
-    int limLen = 0;
+    landmarks.emplace(0);
+    vector<Speed> limit;
+    int pos = 0;
     for (int i = 0; i < numLimits; ++i) {
         int len, lim;
         cin >> len >> lim;
-        pair<int, int> temp = {len, lim};
-        limit.emplace_back(temp);
-        limLen += len;
-        landmarks.emplace(limLen);
-        landmarks.emplace(limLen + 1);
+        pos += len;
+        limit.emplace_back(pos, lim);
+        landmarks.emplace(pos);
     }
-    int bessieLen = 0;
+    vector<Speed> bessie;
+    pos = 0;
     for (int i = 0; i < numBessie; ++i) {
         int len, speed;
         cin >> len >> speed;
-        pair<int, int> temp = {len, speed};
-        bessie.emplace_back(temp);
-        bessieLen += len;
-        landmarks.emplace(bessieLen);
-        landmarks.emplace(bessieLen + 1);
+        pos += len;
+        bessie.emplace_back(pos, speed);
+        landmarks.emplace(pos);
     }
 
     int maxOver = 0;
-    int limIdx = 0;
     int bessieIdx = 0;
-    for (int landmark: landmarks) {
-
+    int limitIdx = 0;
+    for (const auto landmark: landmarks) {
+        if (landmark > bessie[bessieIdx].pos) ++bessieIdx;
+        if (landmark > limit[limitIdx].pos) ++limitIdx;
+        maxOver = max(maxOver, bessie[bessieIdx].speed - limit[limitIdx].speed);
     }
 
     cout << maxOver;

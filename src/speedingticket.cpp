@@ -22,6 +22,7 @@ int main() {
         limit.emplace_back(temp);
         limLen += len;
         landmarks.emplace(limLen);
+        landmarks.emplace(limLen + 1);
     }
     int bessieLen = 0;
     for (int i = 0; i < numBessie; ++i) {
@@ -31,6 +32,7 @@ int main() {
         bessie.emplace_back(temp);
         bessieLen += len;
         landmarks.emplace(bessieLen);
+        landmarks.emplace(bessieLen + 1);
     }
 
     int maxOver = 0;

@@ -19,7 +19,6 @@ int main() {
     int numLimits, numBessie;
     cin >> numLimits >> numBessie;
     set<int> landmarks;
-    landmarks.emplace(0);
     vector<Speed> limit;
     int pos = 0;
     for (int i = 0; i < numLimits; ++i) {

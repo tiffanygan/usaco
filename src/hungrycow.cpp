@@ -43,10 +43,11 @@ int main() {
         prevDeliveryDay = currDeliveryDay;
     }
 
-    if (currDeliveryDay < numDays) {
-        if (numLeft - (numDays - currDeliveryDay) > 0) {
-            numEaten += numDays - currDeliveryDay;
-        } else if (numLeft > 0) {
+    ll daysToEnd = numDays - prevDeliveryDay;
+    if (daysToEnd > 0) {
+        if (numLeft > daysToEnd) {
+            numEaten += daysToEnd;
+        } else {
             numEaten += numLeft;
         }
     }

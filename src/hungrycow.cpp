@@ -43,9 +43,9 @@ int main() {
         prevDeliveryDay = currDeliveryDay;
     }
 
-    if (deliveries[numDeliveries - 1].first < numDays) {
-        if (numLeft - (numDays - deliveries[numDeliveries - 1].first) > 0) {
-            numEaten += numDays - deliveries[numDeliveries - 1].first;
+    if (currDeliveryDay < numDays) {
+        if (numLeft - (numDays - currDeliveryDay) > 0) {
+            numEaten += numDays - currDeliveryDay;
         } else if (numLeft > 0) {
             numEaten += numLeft;
         }

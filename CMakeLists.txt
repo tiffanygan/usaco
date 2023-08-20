@@ -5,3 +5,4 @@ include_directories(/usr/local/include)
 set(CMAKE_CXX_STANDARD 11)
 
 add_executable(circularbarn src/circularbarn.cpp)
+add_executable(speedingticket src/speedingticket.cpp)
